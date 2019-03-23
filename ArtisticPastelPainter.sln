@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtisticPastelPainter", "ArtisticPastelPainter\ArtisticPastelPainter.csproj", "{AD3F7379-7B2C-43C7-983D-2AB9D3418BCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD3F7379-7B2C-43C7-983D-2AB9D3418BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3F7379-7B2C-43C7-983D-2AB9D3418BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3F7379-7B2C-43C7-983D-2AB9D3418BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3F7379-7B2C-43C7-983D-2AB9D3418BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4862995-12C2-4920-B941-C598E789DCE2}
+	EndGlobalSection
+EndGlobal
