@@ -22,9 +22,19 @@ namespace ArtisticPastelPainter
             colors.Add((with, from, to));
         }
 
+        public void PaintYourself(ArtisticRegexBrush artisticRegexBrush)
+        {
+            artisticRegexBrush.Unleash(this);
+        }
+
         public static implicit operator string(ArtisticString artisticString)
         {
             return artisticString.ToString();
+        }
+
+        public static implicit operator ArtisticString(string @string)
+        {
+            return new ArtisticString(@string, Color.White);
         }
 
         public override string ToString()
