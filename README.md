@@ -1,7 +1,7 @@
 # Artistic-Pastel-Painter
 credits to the excellent https://github.com/silkfire/Pastel
 
-```
+```csharp
 var example1 = new ArtisticString("Hello World!", Color.IndianRed);
 example1.PaintYourself(Color.GreenYellow, 6, 10);
 example1.PaintYourself(Color.White, 1, 1);
