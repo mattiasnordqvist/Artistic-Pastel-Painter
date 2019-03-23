@@ -1,4 +1,5 @@
 # Artistic-Pastel-Painter
+credits to the excellent https://github.com/silkfire/Pastel
 
 ```
 var helloWorld = new ArtisticString("Hello World!", Color.IndianRed);
