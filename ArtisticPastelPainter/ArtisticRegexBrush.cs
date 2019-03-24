@@ -7,13 +7,19 @@ namespace ArtisticPastelPainter
     {
         private readonly string _regex;
 
-        public ArtisticRegexBrush(string regex, Color color)
+        public ArtisticRegexBrush(string regex, Color foreground, Color? background = null)
         {
             _regex = regex;
-            Color = color;
+            Color = (background, foreground);
         }
 
-        public Color Color { get; private set; }
+        public ArtisticRegexBrush(string regex, Color? foreground = null, Color? background = null)
+        {
+            _regex = regex;
+            Color = (background, foreground);
+        }
+
+        public (Color? background, Color? foreground) Color { get; private set; }
 
         public void Unleash(ArtisticString coloredString)
         {

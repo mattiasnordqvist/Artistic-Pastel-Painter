@@ -27,7 +27,7 @@ namespace ArtisticPastelPainter
             colors.Add(((background: background, foreground: foreground), index, index + length - 1));
         }
 
-        public void PaintYourself(int index, int length, (Color background, Color foreground) with)
+        public void PaintYourself(int index, int length, (Color? background, Color? foreground) with)
         {
             colors.Add((with, index, index + length - 1));
         }
