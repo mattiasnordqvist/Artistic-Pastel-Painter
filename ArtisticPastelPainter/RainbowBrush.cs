@@ -3,12 +3,12 @@ using System.Drawing;
 
 namespace ArtisticPastelPainter
 {
-    public class RainbowBrush : IArtisticBrush
+    public class RainbowBrush : ArtisticBrush
     {
         private int? _fixedRainbowSize;
         private int? _nrOfRainbows;
 
-        public RainbowBrush() { }
+        public RainbowBrush() : base(new MatchAll()) { }
         public static RainbowBrush FixedRainbowSize(int fixedRainbowSize)
         {
             return new RainbowBrush { _fixedRainbowSize = fixedRainbowSize };
@@ -19,11 +19,18 @@ namespace ArtisticPastelPainter
             return new RainbowBrush { _nrOfRainbows = nrOfRainbows };
         }
 
-        public void Unleash(ArtisticString coloredString)
+
+        public new IRegionMatcher Matcher
         {
-            var rainbowSize = _fixedRainbowSize ?? (_nrOfRainbows.HasValue ? (coloredString.Value.Length / _nrOfRainbows) : coloredString.Value.Length);
+            set { base.Matcher = value; }
+            get { return base.Matcher; }
+        }
+
+        protected override void Unleash(ArtisticString coloredString, int index, int length)
+        {
+            var rainbowSize = _fixedRainbowSize ?? (_nrOfRainbows.HasValue ? (length / _nrOfRainbows) : length);
             var rainbow = new Rainbow(rainbowSize.Value).Colors.GetEnumerator();
-            for (int i = 0; i < coloredString.Value.Length; i++)
+            for (int i = index; i < index+length; i++)
             {
                 rainbow.MoveNext();
                 coloredString.PaintYourself(i, 1, rainbow.Current);
