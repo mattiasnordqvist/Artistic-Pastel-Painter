@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ArtisticPastelPainter
 {
     public static class CompressExtensions
     {
-        public static IEnumerable<T> Flatten<T>(this IEnumerable<(T value, int from, int to)> @this, int length)
+        public static IEnumerable<T> Flatten<T>(this IEnumerable<(T value, int from, int to)> @this, int length, Func<IEnumerable<T>, T> merge)
         {
             return Enumerable.Range(0, length)
-                .Select(i => @this.Last(c => c.from <= i && c.to >= i).value);
+                .Select(i => merge(@this.Where(c => c.from <= i && c.to >= i).Select(x => x.value)));
         }
         public static IEnumerable<(T value, int count)> Compress<T>(this IEnumerable<T> @this)
         {
