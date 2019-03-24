@@ -45,11 +45,10 @@ credits to the excellent https://github.com/silkfire/Pastel
         .BeCreativeWith(new ArtisticRegexBrush("World", background: Color.Gray))
         .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
 
-
     Console.WriteLine(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", new ArtisticRegexBrush("World", background: Color.White)));
 
     var combined = new ArtisticPainter()
         .BeCreativeWith(new RainbowBrush() { Matcher = new RegexRegionMatcher("World") })
         .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White));
     Console.WriteLine(combined);
-    ```
+```
