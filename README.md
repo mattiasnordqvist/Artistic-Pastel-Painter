@@ -6,9 +6,9 @@ credits to the excellent https://github.com/silkfire/Pastel
 ```csharp
     var bareBones = new ArtisticString("Hello World!", Color.IndianRed);
     bareBones.PaintYourself(6, 5, Color.GreenYellow);
-    bareBones.PaintYourself(0, 1, background: Color.White);```
+    bareBones.PaintYourself(0, 1, background: Color.White);
     bareBones.PaintYourself(6, 1, (background: Color.White, foreground: Color.OrangeRed));
-    Console.WriteLine(bareBones);// more examples on how to do the same thing here...
+    Console.WriteLine(bareBones);
 
     var withArtisticBrushes = new ArtisticString("Hello World!", Color.IndianRed);
     withArtisticBrushes.PaintYourself(new ArtisticRegexBrush("World", Color.GreenYellow));
