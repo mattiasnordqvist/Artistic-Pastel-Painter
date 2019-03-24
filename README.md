@@ -29,14 +29,27 @@ credits to the excellent https://github.com/silkfire/Pastel
         .Unleash(new ArtisticString("Hello World using implicit casts and return string of Unleash!", Color.IndianRed)));
 
     Console.WriteLine(new ArtisticPainter()
-    .BeCreativeWith(new RainbowBrush())
-    .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
+        .BeCreativeWith(new RainbowBrush())
+        .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
 
     Console.WriteLine(new ArtisticPainter()
-   .BeCreativeWith(RainbowBrush.FixedRainbowSize(15))
-   .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
+        .BeCreativeWith(RainbowBrush.FixedRainbowSize(15))
+        .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
 
     Console.WriteLine(new ArtisticPainter()
-   .BeCreativeWith(RainbowBrush.FixedNrOfRainbows(2))
-   .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
-   ```
+        .BeCreativeWith(RainbowBrush.FixedNrOfRainbows(2))
+        .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
+
+    Console.WriteLine(new ArtisticPainter()
+        .BeCreativeWith(RainbowBrush.FixedNrOfRainbows(2))
+        .BeCreativeWith(new ArtisticRegexBrush("World", background: Color.Gray))
+        .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White)));
+
+
+    Console.WriteLine(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", new ArtisticRegexBrush("World", background: Color.White)));
+
+    var combined = new ArtisticPainter()
+        .BeCreativeWith(new RainbowBrush() { Matcher = new RegexRegionMatcher("World") })
+        .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White));
+    Console.WriteLine(combined);
+    ```
