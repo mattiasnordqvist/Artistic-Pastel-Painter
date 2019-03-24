@@ -14,15 +14,20 @@ namespace ArtisticPastelPainter
         public ArtisticString(string value, Color baseColor)
         {
             Value = value;
-            PaintYourself(baseColor, 0, value.Length);
+            PaintYourself(0, value.Length, baseColor);
         }
 
-        public void PaintYourself(Color with, int index, int length)
+        public void PaintYourself(int index, int length, Color foreground)
         {
-            colors.Add(((background: null, foreground: with), index, index + length - 1));
+            colors.Add(((background: null, foreground: foreground), index, index + length - 1));
         }
 
-        public void PaintYourself((Color background, Color foreground) with, int index, int length)
+        public void PaintYourself(int index, int length, Color? foreground = null, Color? background = null)
+        {
+            colors.Add(((background: background, foreground: foreground), index, index + length - 1));
+        }
+
+        public void PaintYourself(int index, int length, (Color background, Color foreground) with)
         {
             colors.Add((with, index, index + length - 1));
         }
