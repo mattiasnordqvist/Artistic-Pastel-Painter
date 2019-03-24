@@ -17,9 +17,9 @@ namespace ArtisticPastelPainter
             PaintYourself(baseColor, 0, value.Length);
         }
 
-        public void PaintYourself(Color with, int from, int to)
+        public void PaintYourself(Color with, int index, int length)
         {
-            colors.Add((with, from, to));
+            colors.Add((with, index, index+length-1));
         }
 
         public void PaintYourself(ArtisticRegexBrush artisticRegexBrush)

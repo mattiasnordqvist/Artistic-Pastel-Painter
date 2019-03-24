@@ -20,7 +20,7 @@ namespace ArtisticPastelPainter
             var matches = Regex.Matches(coloredString.Value, _regex);
             foreach (Match match in matches)
             {
-                coloredString.PaintYourself(Color, match.Index, match.Index + match.Length - 1);
+                coloredString.PaintYourself(Color, match.Index, match.Length);
             }
         }
     }
