@@ -17,6 +17,12 @@ namespace ArtisticPastelPainter
             PaintYourself(0, value.Length, baseColor);
         }
 
+        public ArtisticString(string value, IArtisticBrush baseBrush)
+        {
+            Value = value;
+            PaintYourself(baseBrush);
+        }
+
         public void PaintYourself(int index, int length, Color foreground)
         {
             colors.Add(((background: null, foreground: foreground), index, index + length - 1));
@@ -32,7 +38,7 @@ namespace ArtisticPastelPainter
             colors.Add((with, index, index + length - 1));
         }
 
-        public void PaintYourself(ArtisticRegexBrush artisticRegexBrush)
+        public void PaintYourself(IArtisticBrush artisticRegexBrush)
         {
             artisticRegexBrush.Unleash(this);
         }
@@ -75,6 +81,11 @@ namespace ArtisticPastelPainter
 
         private (Color? background, Color? foreground) Merge(IEnumerable<(Color? background, Color? foreground)> arg)
         {
+            if (!arg.Any())
+            {
+                return (null, null);
+            }
+
             return arg.Skip(1).Aggregate(arg.First(), (x, n) =>  
             (
                 x.background = n.background ?? x.background,
