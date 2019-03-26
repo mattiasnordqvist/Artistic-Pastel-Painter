@@ -7,16 +7,17 @@ namespace ArtisticPastelPainter
     {
         private int? _fixedRainbowSize;
         private int? _nrOfRainbows;
+        private float _start;
 
         public RainbowBrush() : base(new MatchAll()) { }
-        public static RainbowBrush FixedRainbowSize(int fixedRainbowSize)
+        public static RainbowBrush FixedRainbowSize(int fixedRainbowSize, float start = 0f)
         {
-            return new RainbowBrush { _fixedRainbowSize = fixedRainbowSize };
+            return new RainbowBrush { _fixedRainbowSize = fixedRainbowSize, _start = start };
         }
 
-        public static RainbowBrush FixedNrOfRainbows(int nrOfRainbows)
+        public static RainbowBrush FixedNrOfRainbows(int nrOfRainbows, float start = 0f)
         {
-            return new RainbowBrush { _nrOfRainbows = nrOfRainbows };
+            return new RainbowBrush { _nrOfRainbows = nrOfRainbows, _start = start };
         }
 
 
@@ -29,7 +30,7 @@ namespace ArtisticPastelPainter
         protected override void Unleash(ArtisticString coloredString, int index, int length)
         {
             var rainbowSize = _fixedRainbowSize ?? (_nrOfRainbows.HasValue ? (length / _nrOfRainbows) : length);
-            var rainbow = new Rainbow(rainbowSize.Value).Colors.GetEnumerator();
+            var rainbow = new Rainbow(rainbowSize.Value, _start).Colors.GetEnumerator();
             for (int i = index; i < index+length; i++)
             {
                 rainbow.MoveNext();
@@ -40,10 +41,12 @@ namespace ArtisticPastelPainter
         private class Rainbow
         {
             private readonly int nrOfColors;
+            private readonly float start;
 
-            public Rainbow(int nrOfColors)
+            public Rainbow(int nrOfColors, float start = 0f)
             {
                 this.nrOfColors = nrOfColors;
+                this.start = start;
             }
             public IEnumerable<Color> Colors
             {
@@ -54,7 +57,7 @@ namespace ArtisticPastelPainter
                         int step = 0;
                         while (step < nrOfColors)
                         {
-                            yield return GetRainbowColor(nrOfColors, step);
+                            yield return GetRainbowColor(nrOfColors, (step+((int)(start*nrOfColors)))%nrOfColors);
                             step++;
                         }
                     }

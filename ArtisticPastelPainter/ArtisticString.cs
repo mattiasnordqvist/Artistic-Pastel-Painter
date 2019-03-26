@@ -7,10 +7,11 @@ using Pastel;
 
 namespace ArtisticPastelPainter
 {
+
     public class ArtisticString
     {
         public string Value { get; private set; }
-        private List<((Color? background, Color? foreground) with, int from, int to)> colors = new List<((Color? background, Color? foreground) with, int from, int to)>();
+        private List<(Paint with, int from, int to)> colors = new List<(Paint with, int from, int to)>();
         public ArtisticString(string value, Color baseColor)
         {
             Value = value;
@@ -25,15 +26,20 @@ namespace ArtisticPastelPainter
 
         public void PaintYourself(int index, int length, Color foreground)
         {
-            colors.Add(((background: null, foreground: foreground), index, index + length - 1));
+            PaintYourself(index, length, new Paint { foreground = foreground });
         }
 
-        public void PaintYourself(int index, int length, Color? foreground = null, Color? background = null)
+        public void PaintYourself(int index, int length, Color? foreground = null, Color? background = null, bool? underline = null)
         {
-            colors.Add(((background: background, foreground: foreground), index, index + length - 1));
+            PaintYourself(index, length, new Paint { foreground = foreground, background = background, underline = underline });
         }
 
-        public void PaintYourself(int index, int length, (Color? background, Color? foreground) with)
+        public void PaintYourself(int index, int length, (Color? background, Color? foreground, bool? underline) with)
+        {
+            PaintYourself(index, length, new Paint { background = with.background, foreground = with.foreground, underline = with.underline });
+        }
+
+        public void PaintYourself(int index, int length, Paint with)
         {
             colors.Add((with, index, index + length - 1));
         }
@@ -73,24 +79,29 @@ namespace ArtisticPastelPainter
                 {
                     s = s.PastelBg(c.value.background.Value);
                 }
+                if (c.value.underline.HasValue && c.value.underline.Value)
+                {
+                    s = $"\x1B[4m{s}\x1B[24m";
+                }
                 sb.Append(s);
                 i += c.count;
             }
             return sb.ToString();
         }
 
-        private (Color? background, Color? foreground) Merge(IEnumerable<(Color? background, Color? foreground)> arg)
+        private Paint Merge(IEnumerable<Paint> arg)
         {
             if (!arg.Any())
             {
-                return (null, null);
+                return new Paint(null, null, false);
             }
 
             return arg.Skip(1).Aggregate(arg.First(), (x, n) =>  
-            (
-                x.background = n.background ?? x.background,
-                x.foreground = n.foreground ?? x.foreground
-            ));
+            new Paint { 
+                background = n.background ?? x.background,
+                foreground = n.foreground ?? x.foreground,
+                underline = n.underline ?? x.underline
+            });
         }
     }
 }
