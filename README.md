@@ -1,5 +1,6 @@
 # Artistic-Pastel-Painter
-credits to the excellent https://github.com/silkfire/Pastel
+
+Artistic Pastel Painter is a library to colorize your console output in a very flexible way. It mainly works by applying *Brushes* to an *ArtisticString*. See the source code for *ArtisticRegexBrush* or the *RainbowBrush* to see how they work. For reusability purposes,  a set of brushes can be assigned to an *ArtisticPainter* who can *Unleash* his creativity on any string. The examples below should cover most use-cases. Go ahead and create your own brush!
 
 ![Examples](https://raw.githubusercontent.com/mattiasnordqvist/Artistic-Pastel-Painter/master/example.png)
 
@@ -52,3 +53,5 @@ credits to the excellent https://github.com/silkfire/Pastel
         .Unleash(new ArtisticString("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!", Color.White));
     Console.WriteLine(combined);
 ```
+
+credits to the excellent https://github.com/silkfire/Pastel
