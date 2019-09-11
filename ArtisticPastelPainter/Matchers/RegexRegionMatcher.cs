@@ -11,7 +11,6 @@ namespace ArtisticPastelPainter
         public RegexRegionMatcher(string regex)
         {
             this.regex = regex;
-
         }
 
         public IEnumerable<StringRegion> Match(string value)
