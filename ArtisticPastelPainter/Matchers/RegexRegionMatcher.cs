@@ -15,7 +15,9 @@ namespace ArtisticPastelPainter
 
         public IEnumerable<StringRegion> Match(string value)
         {
-            return Regex.Matches(value, regex).Select(x => new StringRegion(x.Index, x.Length));
+            return Regex.Matches(value, regex)
+                .OfType<Match>()
+                .Select(x => new StringRegion(x.Index, x.Length));
         }
     }
 }
